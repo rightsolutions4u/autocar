@@ -1,0 +1,161 @@
+﻿@model  autocarrs.Models.AutosVehicle
+<section id="filter_form" class="gray-bg padding" >
+    <div class="row">
+        @if (Model != null && Model.IsSold != 1 && Model.IsReserved != 1)
+        {
+
+            <div class="form-group col-md-6 col-sm-6">
+                @foreach (var item in Model.AutosImages)
+                {
+                    <div class="featured-car-img">
+                        <a href=~/@item.ImgURL><img src=~/@item.ImgURL class="img-fluid" alt="Image"></a>
+                    </div>
+                }
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <h1>  @Model.CarMake.MkDesc @Model.CarModel.MdDesc @Model.AuYear </h1>
+                <div class="row">
+                    @foreach (var feature in Model.AutosFeatures)
+                    {
+                        <ul> <li style="text-align:left">@feature.Vehiclefeatures.FTDESC  </li></ul>
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <div class="form-group text">
+                            <h4 class="black_input">Price From</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h5 style="text-align:match-parent; color:red">@Model.SellPri $ </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <div class="form-group text">
+                            <h4 class="black_input">Payment From</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 blue_input">
+                        <h5 style="text-align:match-parent; color:red" id="x">  </h5>
+                        <script>
+                        var a = @Model.SellPri;
+                        var b = (10/100) * a;
+                        document.getElementById("x").innerHTML = b;
+                        </script>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <div class="form-group text">
+                            <h4 class="black_input">Discount Price</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h5 style="text-align:match-parent; color:red" id="y">  </h5>
+                        <script>
+                              var a = @Model.SellPri;
+                              var b = a - ((1/100) * a);
+                              document.getElementById("y").innerHTML = b;
+                        </script>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h4 class="black_input"><b>Register</b></h4>
+                    </div>
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h5 style="text-align:match-parent"> @Model.AuYear  </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h4 class="black_input"><b>Odometer</b></h4>
+                    </div>
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h5 style="text-align:match-parent"> @Model.Mileag miles </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h4 class="black_input"><b>Engine</b></h4>
+                    </div>
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h5 style="text-align:match-parent"> @Model.Power KW;  @Model.FuelType ; @Model.Engine   </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h4 class="black_input"><b>Body Type</b></h4>
+                    </div>
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h5 style="text-align:match-parent"> @Model.Seater Seater; @Model.Acolor  </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h4 class="black_input"><b>History</b></h4>
+                    </div>
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h5 style="text-align:match-parent"> Not Available   </h5>
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
+</section>
+<hr>
+@*hr { display: block; margin-before: 0.5em; margin-after: 0.5em; margin-start: auto; margin-end: auto; overflow: hidden; border-style: inset; border-width: 1px;}*@
+<section id="details" class="gray-bg ">
+    <div class="row">
+        @if (Model != null && Model.IsSold != 1 && Model.IsReserved != 1)
+        {
+        <div class="form-group col-md-12 col-sm-6">
+            <div class="col-md-4 col-sm-6">
+                @foreach (var item in Model.AutosImages)
+                {
+                    <div class="featured-car-img">
+                        <a href=~/@item.ImgURL><img src=~/@item.ImgURL class="img-fluid" alt="Image"></a>
+                    </div>
+                    break;
+                }
+            </div>
+            <div class="col-md-1 col-sm-6">
+
+            </div>
+            <div class="form-group col-md-7 col-sm-6">
+                <h4>  @Model.CarMake.MkDesc @Model.CarModel.MdDesc</h4>
+                @foreach (var feature in Model.AutosFeatures)
+                {
+                    @*@feature.Vehiclefeatures.FTDESC*@
+                    <ul> <li style="text-align:left">@feature.Vehiclefeatures.FTDESC  </li></ul>
+                }
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 blue_input">
+                        <h4 class="black_input"><b>Car price</b></h4>
+                    </div>
+                    <div class="col-md-6 col-sm-6 blue_input">
+                        <h5 style="text-align:match-parent"> @Model.SellPri   </h5>
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+            <div class="form-group row">
+                <div class="form-group col-md-4 col-sm-6">
+                    <div class="form-group">
+                        <h4 class="black_input">Interior</h4>
+                    </div>
+                    @* image *@
+
+                </div>
+
+            </div>
+            <input type="submit" name="Choose" value="Choose" class="login_btn" onclick="location.href='@Url.Action("PostToCart", "AutosVehicles" , new { id=Model.AutoId, SellPri=@Model.SellPri, CarMake=@Model.CarMake.MkDesc, CarModel=@Model.CarModel.MdDesc,Category =@Model.CarCategory.CgDesc, Color=@Model.Acolor})'">
+            @*<input type="submit" name="Choose" value="Choose" class="login_btn" onclick="location.href='@Url.Action("PostToCart", "AutosVehicles" , new { id = @Model.AutoId })'">*@
+        </div>
+            
+        }
+    </div>
+</section>
+

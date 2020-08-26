@@ -1,0 +1,40 @@
+﻿@model IEnumerable<autocarrs.Models.Cart>
+@if (Model != null)
+{
+    <div class="section-header text-center">
+        <h2>Your Cart <span>Special Offers</span></h2>
+        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. </p>
+    </div>
+    foreach (var item in Model)
+    {
+        <div class="modal-body">
+            <div class="login_wrap">
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <h6>  @ViewBag.CarMake  @ViewBag.CarModel  @ViewBag.CarCategory  </h6>
+                            <h6>  @ViewBag.Color color</h6>
+                            <h3> <i>Car Price </i><span>@item.SellPri</span></h3>
+                            <button class="btn"><i class="fa fa-times-circle-o" onclick="location.href='@Url.Action("AddOrder", "AutosVehicles", new { id = item.AutoId})'"></i></button>
+                            <button class="btn"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="Add" value="Add" id="Add" class="btn btn-block">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            
+                        </div>
+                        @*<input type="submit" value="Login" id="login" class="btn btn-block" onclick="location.href='@Url.Action("AddOrder", "AutosVehicles", new { id = item.AutoId})'">*@
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*</div>*@
+    }
+}
