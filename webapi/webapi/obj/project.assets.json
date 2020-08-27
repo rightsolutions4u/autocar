@@ -13446,11 +13446,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\smali\\AutoCars\\webapi\\webapi\\webapi.csproj",
+      "projectUniqueName": "C:\\Users\\smali\\AutoCars_1\\webapi\\webapi\\webapi.csproj",
       "projectName": "webapi",
-      "projectPath": "C:\\Users\\smali\\AutoCars\\webapi\\webapi\\webapi.csproj",
+      "projectPath": "C:\\Users\\smali\\AutoCars_1\\webapi\\webapi\\webapi.csproj",
       "packagesPath": "C:\\Users\\smali\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\smali\\AutoCars\\webapi\\webapi\\obj\\",
+      "outputPath": "C:\\Users\\smali\\AutoCars_1\\webapi\\webapi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
