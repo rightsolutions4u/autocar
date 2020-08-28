@@ -62,8 +62,25 @@ namespace autocarrs.Controllers
                 //Checking the response is successful or not which is sent using HttpClient  
                 if (Res.IsSuccessStatusCode)
                 {
-                    //Storing the response details recieved from web api   
+                    //code to fetch token on correct userid and password
+                    client.DefaultRequestHeaders.Clear();
+                    UriBuilder builder1 = new UriBuilder("https://localhost:44363/api/Auth/authenticate?");
+
+                    //builder.Query = "id=mars&UserPassword=mars";
+
+                    builder1.Query = "username=" + UserId + "&pwd=" + UserPassword;
+
+
+                    HttpResponseMessage Res1 = await client.GetAsync(builder1.Uri);
+
+
+                    //Checking the response is successful or not which is sent using HttpClient  
+                    if (Res1.IsSuccessStatusCode)
+                    {
+                    //Storing the response details recieved from web api
                     var SiteUser = Res.Content.ReadAsStringAsync().Result;
+                    
+                    var token = Res1.Content.ReadAsStringAsync().Result;
 
                     //Deserializing the response recieved from web api and storing into the Employee list  
                     SiteUsers = JsonConvert.DeserializeObject<SiteUsers>(SiteUser);
@@ -77,6 +94,16 @@ namespace autocarrs.Controllers
                     Response.Cookies.Add(cookie);
                     /* cookie code ends here*/
                     return View("Welcome", SiteUsers);
+
+                    }
+                    else
+                    {
+                        Error err = new Error();
+                        err.ErrorMessage = "Wrong UserId or Password";
+                        ViewBag.Error = err;
+                        ViewBag.SiteUsers = null;
+                        return View("Error", err);
+                    }
                 }
                 else
                 {

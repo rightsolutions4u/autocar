@@ -18,5 +18,7 @@ namespace autocarrs.Models
         public int IsDeleted { get; set; }
         public string UserType { get; set; }
         public DateTime RegDate { get; set; }
+
+        public string ApiToken { get; set; }
     }
 }

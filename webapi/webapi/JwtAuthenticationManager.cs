@@ -27,10 +27,10 @@ namespace webapi
         }
         public string Authenticate(string username, string password)
         {
-            if (!users.Any(u => u.Key == username && u.Value == password))
-            {
-                return null;
-            }
+            //if (!users.Any(u => u.Key == username && u.Value == password))
+            //{
+            //    return null;
+            //}
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.ASCII.GetBytes(key);
