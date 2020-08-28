@@ -45,11 +45,11 @@ namespace autocarrs.Controllers
                 client.DefaultRequestHeaders.Clear();
                 //Define request data format  
                 //changes to commit again
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer",
-                    HttpContext.Session.GetString("token"));
-                //Sending request to find web api REST service resource PostSiteUsers using HttpClient  
+                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //client.DefaultRequestHeaders.Authorization =
+                //new AuthenticationHeaderValue("Bearer",
+                //    HttpContext.Session.GetString("token"));
+                ////Sending request to find web api REST service resource PostSiteUsers using HttpClient  
                 UriBuilder builder = new UriBuilder("https://localhost:44363/api/SiteUsers/CheckLogin?");
 
                 //builder.Query = "id=mars&UserPassword=mars";
