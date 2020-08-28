@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CVRpQ4+PWCAmnvTO2/Eko7sTXUN1GDpEkCgqdxMvmBOpSAJp54c2NZ0jwRbq0aNGIJPbqB0Um0s2wdQ5UArwsQ==",
+  "dgSpecHash": "Y1YGEQZhW2CljEGEg4f2E44++suAiu1aO2T4JRe0mjV1+XaF5JYmynYrRyxqWmyvx0aNfwNsTnnkQat1VwpGdQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\smali\\AutoCars_1\\webapi\\webapi\\webapi.csproj",
   "expectedPackageFiles": [
@@ -323,6 +323,12 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\smali\\AutoCars_1\\webapi\\webapi\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",

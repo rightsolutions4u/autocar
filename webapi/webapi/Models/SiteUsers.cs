@@ -27,5 +27,8 @@ namespace webapi.Models
         [StringLength(50)]
         public string UserType { get; set; }
         public DateTime  RegDate { get; set; }
+
+        //Added by mohtashim on 27/08/2020
+        public string ApiToken { get; set; }
     }
 }
