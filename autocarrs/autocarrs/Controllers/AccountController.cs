@@ -44,6 +44,7 @@ namespace autocarrs.Controllers
                 var abc = Request.QueryString["UserId"];
                 client.DefaultRequestHeaders.Clear();
                 //Define request data format  
+                //changes to commit again
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer",
