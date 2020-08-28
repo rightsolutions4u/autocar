@@ -20,7 +20,6 @@ namespace webapi
             { "test1", "password1"},
             { "test2", "password2" }
         };
-
         private readonly string key;
         public JwtAuthenticationManager(string key)
         {
