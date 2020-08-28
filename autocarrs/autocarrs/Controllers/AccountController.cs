@@ -16,6 +16,8 @@ using System.Runtime.Serialization;
 using System.Configuration;
 using System.Text;
 
+//using Microsoft.AspNetCore.Http;
+
 namespace autocarrs.Controllers
 {
     public class AccountController : Controller
@@ -23,13 +25,18 @@ namespace autocarrs.Controllers
         // private IFacebookService _facebookService;
         //Hosted web API REST Service base url  
         string Baseurl = "https://localhost:44363/";
-        
-
+        //added by SM on 28 Aug, 2020
+       
         [HttpPost]
         public async Task<ActionResult> Login(string UserId, string UserPassword)
         {
             SiteUsers SiteUsers = new SiteUsers();
-            
+            if (Request.Cookies["UserId"] != null)
+            {
+                string User= Request.Cookies["UserId"].Value.ToString();
+                ViewBag.UserId = User;
+                return View("Welcome", SiteUsers);
+            }
             using (var client = new HttpClient())
             {
                 //Passing service base url  
@@ -38,7 +45,9 @@ namespace autocarrs.Controllers
                 client.DefaultRequestHeaders.Clear();
                 //Define request data format  
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+                client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer",
+                    HttpContext.Session.GetString("token"));
                 //Sending request to find web api REST service resource PostSiteUsers using HttpClient  
                 UriBuilder builder = new UriBuilder("https://localhost:44363/api/SiteUsers/CheckLogin?");
 
@@ -62,8 +71,9 @@ namespace autocarrs.Controllers
                     //Login successful, add cookie
                     HttpCookie cookie = new HttpCookie("UserId");
                     cookie.Value = UserId;
+                    ViewBag.UserId = UserId;
                     cookie.Expires= DateTime.Now.AddDays(2);
-                    /*this.ControllerContext.HttpContext.*/Response.Cookies.Add(cookie);
+                    Response.Cookies.Add(cookie);
                     /* cookie code ends here*/
                     return View("Welcome", SiteUsers);
                 }

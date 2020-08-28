@@ -1,12 +1,9 @@
 ﻿@model autocarrs.Models.SiteUsers
-
 <h2>
-    
-
-    @if (Model != null)
+    @if (Model != null && ViewBag.UserId != null)
     {
-    <i class="Welcome">Welcome @Model.UserId</i>
+    <i class="Welcome">Welcome @ViewBag.UserId@*@Model.UserId*@</i>
     }
-
 </h2>
+ 
 

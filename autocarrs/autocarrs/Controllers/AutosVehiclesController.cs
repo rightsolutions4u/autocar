@@ -201,34 +201,42 @@ namespace autocarrs.Controllers
 
         // GET: AutosVehicles/PostToCart
         [HttpGet]
-        public async Task<ActionResult> PostToCart(int id, int SellPri, char CarMake, char CarModel, char Category, char Color)
+        public async Task<ActionResult> PostToCart(int AutoId, int SellPri)
         {
-            if (Request.Cookies.AllKeys.Contains("UserId"))
+            if (Request.Cookies["UserId"] != null)
             {
-                HttpCookie cookie = Request.Cookies["UserId"];
-                ViewBag.CookieMessage = cookie.Value;
+                string UserId = Request.Cookies["UserId"].Value.ToString();
+                ViewBag.UserId = UserId;
             }
-            if (ViewBag.CookieMessage == null) //create a new one
+            else
             {
-                    HttpCookie cookie_new = new HttpCookie("UserId");
-                    //random buyer generator
-                    Random random = new Random();
-                    int length = 8;
-                    var Buyer = "";
-                    for (var i = 0; i < length; i++)
-                    {
+                //random buyer generator
+                Random random = new Random();
+                int length = 8;
+                var Buyer = "";
+                for (var i = 0; i < length; i++)
+                {
                     Buyer += ((char)(random.Next(1, 26) + 64)).ToString().ToLower();
-                    }
-                    cookie_new.Value = Buyer;
-                    cookie_new.Expires = DateTime.Now.AddDays(2);
-                    Response.Cookies.Add(cookie_new);
-                    ViewBag.CookieMessage = cookie_new.Value;
+                }
+                Response.Cookies["UserId"].Value = Buyer;
+                Response.Cookies["UserId"].Expires = DateTime.Now.AddMinutes(5);
+                ViewBag.UserId = Buyer;
             }
+            //if (Request.Cookies.AllKeys.Contains("UserId"))
+            //{
+            //    HttpCookie cookie = Request.Cookies["UserId"];
+            //    ViewBag.UserId = cookie.Value;
+            //    if (cookie.Expires < DateTime.Now)
+            //    {
+            //        ViewBag.UserId = null;
+            //    }
+            //}
+            
            Cart cart = new Cart
             {
-                CartId = 1,
-                BuyrID = ViewBag.CookieMessage,
-                AutoId = id,
+                //CartId = 1,
+                BuyrID = ViewBag.UserId,
+                AutoId = AutoId,
                 SellPri = SellPri,
                 Status = "T",
                 Endate = DateTime.Now
@@ -242,20 +250,13 @@ namespace autocarrs.Controllers
                 var response = await client.PostAsync(url, data);
                 var Cart = response.Content.ReadAsStringAsync().Result;
                 var a = JsonConvert.DeserializeObject<Cart>(Cart); // a is the newly posted auto in cart
-                //var url1 = "https://localhost:44363/api/Carts/GetCartofBuyer";
                 var client1 = new HttpClient();
                 UriBuilder builder = new UriBuilder("https://localhost:44363/api/Carts/GetCartofBuyer?");
-                builder.Query = "BuyrId=" + ViewBag.CookieMessage;
+                builder.Query = "BuyrId=" + ViewBag.UserId;
                 HttpResponseMessage response1 = await client1.GetAsync(builder.Uri);
-                //var response1 = await client.GetAsync(url1);
                 var CartTemp = response1.Content.ReadAsStringAsync().Result;
                 Cart[] a1 = JsonConvert.DeserializeObject<Cart[]>(CartTemp);
                 ViewBag.Cart = a1;
-                ViewBag.CarMake = CarMake;
-                ViewBag.CarModel = CarModel;
-                ViewBag.Category = Category;
-                ViewBag.Color = Color;
-
                 return View("Cart", a1);
             }
             catch
@@ -263,8 +264,9 @@ namespace autocarrs.Controllers
                 return View("Error", "Your Cart is empty");
             }
         }
-// GET: AutosVehicles/Create
-public ActionResult Create()
+
+        // GET: AutosVehicles/Create
+        public ActionResult Create()
         {
             ViewBag.BodyId = new SelectList(db.CarBodies, "BodyId", "BDDesc");
             ViewBag.CatgId = new SelectList(db.CarCategories, "CatgId", "CgDesc");

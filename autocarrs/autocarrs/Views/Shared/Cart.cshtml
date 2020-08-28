@@ -1,40 +1,61 @@
 ﻿@model IEnumerable<autocarrs.Models.Cart>
 @if (Model != null)
 {
-    <div class="section-header text-center">
-        <h2>Your Cart <span>Special Offers</span></h2>
+    <style>
+        order {
+            display: none
+        }
+    </style>
+    @*<div class="section-header text-center">
+        <h2><span>Your Cart </span></h2>
         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. </p>
+    </div>*@
+    <div class="form-group">
+        <h2><span>Your Cart </span></h2>
     </div>
-    foreach (var item in Model)
-    {
+    int y = 0;
+    int a = 0;
+    //foreach (var item in Model)
+    //{
+    //    y = y + 1;
+
         <div class="modal-body">
             <div class="login_wrap">
                 <div class="row">
-
                     <div class="col-md-6 col-sm-6">
+                        @foreach (var item in Model){
                         <div class="form-group">
-                            <h6>  @ViewBag.CarMake  @ViewBag.CarModel  @ViewBag.CarCategory  </h6>
-                            <h6>  @ViewBag.Color color</h6>
-                            <h3> <i>Car Price </i><span>@item.SellPri</span></h3>
-                            <button class="btn"><i class="fa fa-times-circle-o" onclick="location.href='@Url.Action("AddOrder", "AutosVehicles", new { id = item.AutoId})'"></i></button>
-                            <button class="btn"><i class="fa fa-plus"></i></button>
+                            @*<h4>  @item.AutosVehicle.CarMake.MkDesc  @item.AutosVehicle.CarModel.MdDesc  @item.AutosVehicle.CarBody.BDDesc   <button class="btn"><i class="fa fa-times-circle-o" onclick="location.href='@Url.Action("Delete", "Carts", new { id = @item.CartId, BuyrId=item.BuyrID})'"></i></button>  <button class="btn"><i class="fa fa-plus" onclick="location.href='@Url.Action("AddOrder", "OrderMasters", new { AutoId = item.AutoId, SellPri=item.SellPri })'"></i></button> </h4>*@
+                            <h4>  @item.AutosVehicle.CarMake.MkDesc  @item.AutosVehicle.CarModel.MdDesc  @item.AutosVehicle.CarBody.BDDesc   <button class="btn"><i class="fa fa-times-circle-o" onclick="location.href='@Url.Action("Delete", "Carts", new { id = @item.CartId, BuyrId=item.BuyrID})'"></i></button>  <button class="btn"><i class="fa fa-plus" onclick="PopulateOrder()"></i></button> </h4>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="Add" value="Add" id="Add" class="btn btn-block">
+                            <h4>  @item.AutosVehicle.Acolor color</h4>
+                            <h3> <i>Car Price </i><span>@item.AutosVehicle.SellPri</span></h3>
                         </div>
+                            y = y + 1;
+                            a = @item.AutosVehicle.SellPri + a;
+                        }
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
+                    <div id="order" class="col-md-6 col-sm-6">
                         <div class="form-group">
-                            
+                            <h2><span>Your Order </span></h2>
                         </div>
-                        @*<input type="submit" value="Login" id="login" class="btn btn-block" onclick="location.href='@Url.Action("AddOrder", "AutosVehicles", new { id = item.AutoId})'">*@
-                        
+                        <h4> <i>Car Price </i> </h4> <h4 id="x"></h4>
+                        <h4> <i>Vat Deduction</i> 10%</h4>
+                        <h4> <i>Quantity</i></h4> <h4 id="z"></h4>
+                        <script>
+                            function PopulateOrder() {
+                                document.getElementById("x").innerHTML = a;
+                                document.getElementById("z").innerHTML = y;
+                            }
+                        </script>
+                        @*<input type="submit" value="order" id="order" class="btn btn-block" onclick="location.href='@Url.Action("AddOrder", "AutosVehicles", new { id = item.AutoId})'">*@
                     </div>
+                    
+                    <div class="mid_divider"></div>
                 </div>
             </div>
         </div>
         @*</div>*@
-    }
+    //}
 }

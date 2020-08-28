@@ -13,7 +13,6 @@ namespace autocarrs.Models
         public string AutoID { get; set; }
         [StringLength(30)]
         public string BUYRID { get; set; }
-        [StringLength(1)]
         public DateTime PURDAT { get; set; }
         public int PURAMT { get; set; }
         public string PURTYP { get; set; }

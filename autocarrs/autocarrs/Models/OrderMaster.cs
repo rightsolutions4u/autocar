@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
 namespace autocarrs.Models
 {
     public class OrderMaster
     {
-        [StringLength(30)]
-        public string BUYRID { get; set; }
+        [Key]
         [Column(Order = 1)]
         public int INVNUM { get; set; }
-        [Column(Order = 1)]
+        [Key]
+        [Column(Order = 2)]
         public DateTime TRDATE { get; set; }
+        [StringLength(30)]
+        public string BUYRID { get; set; }
         public int AMOUNT { get; set; }
         public int PartialPayment { get; set; }
     }

@@ -26,10 +26,11 @@ namespace autocarrs.Models
         public System.Data.Entity.DbSet<autocarrs.Models.CarCategory> CarCategories { get; set; }
 
         public System.Data.Entity.DbSet<autocarrs.Models.CarMake> CarMakes { get; set; }
-
         public System.Data.Entity.DbSet<autocarrs.Models.CarModel> CarModels { get; set; }
-
         public System.Data.Entity.DbSet<autocarrs.Models.AutosImages> AutosImages { get; set; }
         public System.Data.Entity.DbSet<autocarrs.Models.AutosFeatuers> AutosFeatuers { get; set; }
+        public System.Data.Entity.DbSet<autocarrs.Models.Cart> Carts { get; set; }
+        public System.Data.Entity.DbSet<autocarrs.Models.OrderMaster> OrderMasters { get; set; }
+        public System.Data.Entity.DbSet<autocarrs.Models.OrderDetails> OrderDetails { get; set; }
     }
 }

@@ -139,6 +139,8 @@
                                     <li><a href="index-3.html">Home Page 3</a></li>
                                 </ul>
                             </li>
+
+                            <li class="dropdown">
                             <li><a href="about-us.html">About Us</a></li>
                             <li class="dropdown">
                                 <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sell</a>
@@ -166,6 +168,11 @@
                                     <li><a href="blog-detail.html">Blog Detail</a></li>
                                 </ul>
                             </li>
+                            <li>
+                                <a href="@Url.Action("MyCart", "Carts" , new { BuyrId = ViewBag.UserId })">
+                                    <i class="fa fa-shopping-cart" style="font-size:48px;color:red" aria-hidden="true"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <!-- removing John Anderson menu by SM -->
@@ -175,6 +182,7 @@
                             <input type="text" placeholder="Search..." class="form-control">
                             <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </form>
+                        
                     </div>
                 </div>
             </div>
@@ -228,7 +236,7 @@
     
     <!-- /Brands-->
     <!--Footer -->
-    <footer>
+    @*<footer>
         <div class="footer-top">
             <div class="container">
                 <div class="row">
@@ -305,7 +313,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>*@
     <!-- /Footer-->
     <!--Back to top-->
     <div id="back-top" class="back-top"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
@@ -464,9 +472,9 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        @*<footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        </footer>*@
     </div>
     <!-- Scripts -->
     @Scripts.Render("~/assets/js/jquery.min.js")
