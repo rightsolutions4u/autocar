@@ -13,7 +13,7 @@ using webapi.Models;
 namespace webapi.Controllers
 {
     //added by Mohtashim on 27/08/2020
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -25,7 +25,7 @@ namespace webapi.Controllers
             this.jwtAuthenticationManager = jwtAuthenticationManager;
         }
         [AllowAnonymous]
-        [HttpPost("authenticate")]
+        [HttpGet("authenticate")]
         public IActionResult Authenticate(string username, string pwd)
         {
             var token = jwtAuthenticationManager.Authenticate(username, pwd);

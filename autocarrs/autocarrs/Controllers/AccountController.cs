@@ -51,20 +51,13 @@ namespace autocarrs.Controllers
                     HttpContext.Session.GetString("token"));
                 //Sending request to find web api REST service resource PostSiteUsers using HttpClient  
                 UriBuilder builder = new UriBuilder("https://localhost:44363/api/SiteUsers/CheckLogin?");
-
-                //builder.Query = "id=mars&UserPassword=mars";
-
                 builder.Query = "id=" + UserId + "&UserPassword=" + UserPassword;
-
-                               
                 HttpResponseMessage Res = await client.GetAsync(builder.Uri);
-
                 //Checking the response is successful or not which is sent using HttpClient  
                 if (Res.IsSuccessStatusCode)
                 {
                     //Storing the response details recieved from web api   
                     var SiteUser = Res.Content.ReadAsStringAsync().Result;
-
                     //Deserializing the response recieved from web api and storing into the Employee list  
                     SiteUsers = JsonConvert.DeserializeObject<SiteUsers>(SiteUser);
                     ViewBag.SiteUsers = SiteUsers;
