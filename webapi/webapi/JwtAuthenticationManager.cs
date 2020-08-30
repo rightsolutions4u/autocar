@@ -17,8 +17,8 @@ namespace webapi
     {
         private readonly IDictionary<string, string> users = new Dictionary<string, string>
         {
-            { "test1", "password1"},
-            { "test2", "password2" }
+            
+            { "Shazia", "1" }
         };
         private readonly string key;
         public JwtAuthenticationManager(string key)
@@ -27,11 +27,6 @@ namespace webapi
         }
         public string Authenticate(string username, string password)
         {
-            //if (!users.Any(u => u.Key == username && u.Value == password))
-            //{
-            //    return null;
-            //}
-
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.ASCII.GetBytes(key);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -41,7 +36,7 @@ namespace webapi
                     new Claim(ClaimTypes.Name, username)
                 }
                 ),
-                Expires = DateTime.UtcNow.AddHours(1),
+                Expires = DateTime.UtcNow.AddHours(36),
                 SigningCredentials =
                 new SigningCredentials(
                     new SymmetricSecurityKey(tokenKey),

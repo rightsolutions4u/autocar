@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Mars\\FreelanceWork\\faisal-butt - sialkot\\autocar\\autocar\\webapi\\webapi\\webapi.csproj": {}
+    "C:\\Users\\smali\\AutoCars_1\\webapi\\webapi\\webapi.csproj": {}
   },
   "projects": {
-    "F:\\Mars\\FreelanceWork\\faisal-butt - sialkot\\autocar\\autocar\\webapi\\webapi\\webapi.csproj": {
+    "C:\\Users\\smali\\AutoCars_1\\webapi\\webapi\\webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Mars\\FreelanceWork\\faisal-butt - sialkot\\autocar\\autocar\\webapi\\webapi\\webapi.csproj",
+        "projectUniqueName": "C:\\Users\\smali\\AutoCars_1\\webapi\\webapi\\webapi.csproj",
         "projectName": "webapi",
-        "projectPath": "F:\\Mars\\FreelanceWork\\faisal-butt - sialkot\\autocar\\autocar\\webapi\\webapi\\webapi.csproj",
-        "packagesPath": "C:\\Users\\mars\\.nuget\\packages\\",
-        "outputPath": "F:\\Mars\\FreelanceWork\\faisal-butt - sialkot\\autocar\\autocar\\webapi\\webapi\\obj\\",
+        "projectPath": "C:\\Users\\smali\\AutoCars_1\\webapi\\webapi\\webapi.csproj",
+        "packagesPath": "C:\\Users\\smali\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\smali\\AutoCars_1\\webapi\\webapi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\mars\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\smali\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
@@ -107,7 +105,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

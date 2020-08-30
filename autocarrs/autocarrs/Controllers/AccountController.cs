@@ -17,7 +17,6 @@ using System.Configuration;
 using System.Text;
 
 //using Microsoft.AspNetCore.Http;
-
 namespace autocarrs.Controllers
 {
     public class AccountController : Controller
@@ -26,29 +25,21 @@ namespace autocarrs.Controllers
         //Hosted web API REST Service base url  
         string Baseurl = "https://localhost:44363/";
         //added by SM on 28 Aug, 2020
-       
         [HttpPost]
         public async Task<ActionResult> Login(string UserId, string UserPassword)
         {
             SiteUsers SiteUsers = new SiteUsers();
             if (Request.Cookies["UserId"] != null)
             {
-                string User= Request.Cookies["UserId"].Value.ToString();
+                string User = Request.Cookies["UserId"].Value.ToString();
                 ViewBag.UserId = User;
                 return View("Welcome", SiteUsers);
             }
-            using (var client = new HttpClient())
-            {
+                var client = new HttpClient();
                 //Passing service base url  
                 client.BaseAddress = new Uri(Baseurl);
-                var abc = Request.QueryString["UserId"];
                 client.DefaultRequestHeaders.Clear();
                 //Define request data format  
-                //changes to commit again
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer",
-                    HttpContext.Session.GetString("token"));
                 //Sending request to find web api REST service resource PostSiteUsers using HttpClient  
                 UriBuilder builder = new UriBuilder("https://localhost:44363/api/SiteUsers/CheckLogin?");
                 builder.Query = "id=" + UserId + "&UserPassword=" + UserPassword;
@@ -56,20 +47,39 @@ namespace autocarrs.Controllers
                 //Checking the response is successful or not which is sent using HttpClient  
                 if (Res.IsSuccessStatusCode)
                 {
-                    //Storing the response details recieved from web api   
-                    var SiteUser = Res.Content.ReadAsStringAsync().Result;
-                    //Deserializing the response recieved from web api and storing into the Employee list  
-                    SiteUsers = JsonConvert.DeserializeObject<SiteUsers>(SiteUser);
-                    ViewBag.SiteUsers = SiteUsers;
-                    ViewBag.Error = null;
-                    //Login successful, add cookie
-                    HttpCookie cookie = new HttpCookie("UserId");
-                    cookie.Value = UserId;
-                    ViewBag.UserId = UserId;
-                    cookie.Expires= DateTime.Now.AddDays(2);
-                    Response.Cookies.Add(cookie);
-                    /* cookie code ends here*/
-                    return View("Welcome", SiteUsers);
+                    //code to fetch token on correct userid and password
+                    //client.DefaultRequestHeaders.Clear();
+                    //UriBuilder builder1 = new UriBuilder("https://localhost:44363/api/Auth/authenticate?");
+                    //builder1.Query = "username=" + UserId + "&pwd=" + UserPassword;
+                    //HttpResponseMessage Res1 = await client.GetAsync(builder1.Uri);
+                    //Checking the response is successful or not which is sent using HttpClient  
+                    //if (Res1.IsSuccessStatusCode)
+                    //{
+                        //Storing the response details recieved from web api
+                        var SiteUser = Res.Content.ReadAsStringAsync().Result;
+                        //var token = Res1.Content.ReadAsStringAsync().Result;
+                       //Deserializing the response recieved from web api and storing into the Employee list  
+                        SiteUsers = JsonConvert.DeserializeObject<SiteUsers>(SiteUser);
+                        ViewBag.SiteUsers = SiteUsers;
+                        ViewBag.Error = null;
+                        //Login successful, add cookie
+                        HttpCookie cookie = new HttpCookie("UserId");
+                        cookie.Value = UserId;
+                        ViewBag.UserId = UserId;
+                        cookie.Expires = DateTime.Now.AddDays(2);
+                        
+                        Response.Cookies.Add(cookie);
+                        /* cookie code ends here*/
+                        return View("Welcome", SiteUsers);
+                    //}
+                    //else
+                    //{
+                    //    Error err = new Error();
+                    //    err.ErrorMessage = "Wrong UserId or Password";
+                    //    ViewBag.Error = err;
+                    //    ViewBag.SiteUsers = null;
+                    //    return View("Error", err);
+                    //}
                 }
                 else
                 {
@@ -79,11 +89,8 @@ namespace autocarrs.Controllers
                     ViewBag.SiteUsers = null;
                     return View("Error", err);
                 }
-            }
             
-
         }
-
         [HttpGet]
         public ActionResult LoginWithFaceBook()
         {
@@ -121,23 +128,16 @@ namespace autocarrs.Controllers
 
             return View(faceBookUser);
         }
-
-
         // GET: Account
         public ActionResult Index()
         {
             return View();
         }
-
         // GET: Account/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
-
-      
-        
-
         // POST: Account/Create
         [HttpPost]
         public async Task<ActionResult> Create(FormCollection collection)
