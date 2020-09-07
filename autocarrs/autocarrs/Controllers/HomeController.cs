@@ -28,6 +28,14 @@ namespace autocarrs.Controllers
                 var response1 = await client1.GetAsync(url1);
                 var CarMakes = response1.Content.ReadAsStringAsync().Result;
                 load.CarMake = JsonConvert.DeserializeObject<CarMake[]>(CarMakes);
+                //SiteUsers
+                //var client_Users = new HttpClient();
+
+                //UriBuilder builder = new UriBuilder("https://localhost:44363/api/SiteUsers/CheckLogin?");
+                //builder.Query = "Id=" + Request.Cookies["UserId"] + "&UserPassword=" + "1";
+                //HttpResponseMessage response_Users = await client.GetAsync(builder.Uri);
+                //var Users = response_Users.Content.ReadAsStringAsync().Result;
+                //load.SiteUsers = JsonConvert.DeserializeObject<SiteUsers>(Users);
                 return View("LoadView", load);
             }
             catch (Exception e)

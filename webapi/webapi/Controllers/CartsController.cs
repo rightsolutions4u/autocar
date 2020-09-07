@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -20,7 +21,35 @@ namespace webapi.Controllers
         {
             _context = context;
         }
-
+        // GET: api/Carts
+        [HttpGet("GetTotalOrder")]
+        public async Task<ActionResult<IEnumerable<Cart>>> GetTotalOrder(int cartId, string BuyrId)
+        {
+           
+            try 
+            {
+                var cart = _context.Cart.FirstOrDefault(s => s.CartId.Equals(cartId));
+                cart.Status = "U";
+                _context.Entry(cart).Property("Status").IsModified = true;
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.
+                ModelState.AddModelError("", "Unable to save changes. " +
+                    "Try again, and if the problem persists " + "see your system administrator.");
+            }
+            return await _context.Cart     
+                 .Where(a => a.Status == "U" && a.BuyrID == BuyrId)
+                 .Include(vehicle => vehicle.AutosVehicle)
+                     .ThenInclude(make => make.CarMake)
+                 .Include(vehicle => vehicle.AutosVehicle)
+                      .ThenInclude(model => model.CarModel)
+                 .Include(vehicle => vehicle.AutosVehicle)
+                      .ThenInclude(carbody => carbody.CarBody)
+                 .ToListAsync();
+             
+        }
         // GET: api/Carts
         [HttpGet("GetCartofBuyer")]
         public async Task<ActionResult<IEnumerable<Cart>>> GetCartofBuyer(string BuyrId)

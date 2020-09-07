@@ -28,6 +28,7 @@ namespace autocarrs.Models
         public IEnumerable<CarBody> CarBody { get; set; }
         public IEnumerable<CarCategory> CarCategory { get; set; }
         public IEnumerable<CarModel> CarModel { get; set; }
+        public SiteUsers SiteUsers { get; set; }
 
     }
 }

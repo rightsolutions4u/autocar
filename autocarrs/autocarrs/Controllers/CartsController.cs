@@ -107,6 +107,7 @@ namespace autocarrs.Controllers
         // GET: Carts/MyCart
         public async Task<ActionResult> MyCart(string BuyrId)
         {
+            BuyrId = "Shazia";
             Cart cart = new Cart();
             var client = new HttpClient();
             client.DefaultRequestHeaders.Clear();

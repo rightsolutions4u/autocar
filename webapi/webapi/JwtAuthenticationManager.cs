@@ -15,11 +15,6 @@ namespace webapi
     //added by Mohtashim on 27/08/2020
     public class JwtAuthenticationManager : IJwtAuthenticationManager
     {
-        private readonly IDictionary<string, string> users = new Dictionary<string, string>
-        {
-            
-            { "Shazia", "1" }
-        };
         private readonly string key;
         public JwtAuthenticationManager(string key)
         {

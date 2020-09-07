@@ -2,8 +2,7 @@
 @model Load
 
 <!-- Filter-Form -->
-@*@if (Model != null) // commented on Aug 30, 2020 by SM
-{*@
+
     <!DOCTYPE html>
     <html>
     <head>
@@ -205,16 +204,18 @@
 
                             <
                             <!--div class="banner_content">
-                                <h1>Find the right car for you.</h1>
-                                <p>We have more than a thousand cars for you to choose. </p>
-                                <a href="#" class="btn">Read More <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-                            </div>-->
+                            <h1>Find the right car for you.</h1>
+                            <p>We have more than a thousand cars for you to choose. </p>
+                            <a href="#" class="btn">Read More <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                        </div>-->
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- /Banners -->
+        @if (Model != null) // commented on Aug 30, 2020 by SM
+        {
         <section id="filter_form" class="gray-bg">
             <form id="search" action="~/AutosVehicles/SearchCars" method="post">
                 <div class="container">
@@ -503,19 +504,19 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         @*<div class="form-group col-md-2 col-sm-6 blue_input">
-                                                                <h4 class="black_input">colors</h4>
-                                                            </div>
-                                                            <div class="form-group col-md-5 col-sm-6 blue_input">
-                                                                <input type="checkbox" id="green">
-                                                                <input type="checkbox" id="blue">
-                                                                <input type="checkbox" id="red">
-                                                                <input type="checkbox" id="silver">
-                                                                <input type="checkbox" id="beige">
-                                                                <input type="checkbox" id="orange">
-                                                                <input type="checkbox" id="gold">
-                                                                <input type="checkbox" id="black">
-                                                                <input type="checkbox" id="yellow">
-                                                            </div>*@
+                                                            <h4 class="black_input">colors</h4>
+                                                        </div>
+                                                        <div class="form-group col-md-5 col-sm-6 blue_input">
+                                                            <input type="checkbox" id="green">
+                                                            <input type="checkbox" id="blue">
+                                                            <input type="checkbox" id="red">
+                                                            <input type="checkbox" id="silver">
+                                                            <input type="checkbox" id="beige">
+                                                            <input type="checkbox" id="orange">
+                                                            <input type="checkbox" id="gold">
+                                                            <input type="checkbox" id="black">
+                                                            <input type="checkbox" id="yellow">
+                                                        </div>*@
                                                         <div class="form-group col-md-3 col-sm-6 blue_input">
                                                             <div class="select">
                                                                 <select class="form-control" id="Acolor" name="Acolor">
@@ -823,7 +824,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-6">
                                     @*<div class="form-group row">
-                                        </div>*@
+                                    </div>*@
                                 </div>
                             </div> <!--row-->
                         </div>  <!--categories-->
@@ -841,27 +842,27 @@
                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
                 </div>
                 <!--<div class="row">
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="looking-car">
-                            <div class="looking-cat-image"> <img src="assets/images/346x224.png" alt="Image" /> </div>
-                            <div class="looking-car-content">
-                                <h3>Looking <span>Used Car?</span></h3>
-                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.</p>
-                                <a href="" class="btn">View Listing<i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
-                            </div>
+                <div class="col-lg-6 col-sm-6">
+                    <div class="looking-car">
+                        <div class="looking-cat-image"> <img src="assets/images/346x224.png" alt="Image" /> </div>
+                        <div class="looking-car-content">
+                            <h3>Looking <span>Used Car?</span></h3>
+                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.</p>
+                            <a href="" class="btn">View Listing<i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="looking-car">
-                            <div class="looking-cat-image"> <img src="assets/images/346x224.png" alt="Image" /> </div>
-                            <div class="looking-car-content">
-                                <h3>Looking <span>New Car?</span></h3>
-                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.</p>
-                                <a href="" class="btn">View Listing<i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
-                            </div>
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                    <div class="looking-car">
+                        <div class="looking-cat-image"> <img src="assets/images/346x224.png" alt="Image" /> </div>
+                        <div class="looking-car-content">
+                            <h3>Looking <span>New Car?</span></h3>
+                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.</p>
+                            <a href="" class="btn">View Listing<i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
                         </div>
                     </div>
-                </div>-->
+                </div>
+            </div>-->
             </div>
         </section>
         <!-- /About -->
@@ -890,10 +891,10 @@
                                         <a href="#"><img src="~/assets/images/1.png" class="img-fluid" alt="image"></a>
                                         <!--<div class="compare_item">-->
                                         <!--<div class="checkbox">
-                                            <input type="checkbox" id="compare4">
-                                            <label for="compare4">Compare</label>
-                                            </div>
-                                        </div>-->
+                                        <input type="checkbox" id="compare4">
+                                        <label for="compare4">Compare</label>
+                                        </div>
+                                    </div>-->
                                         <ul>
                                             <li><i class="fa fa-road" aria-hidden="true"></i>20,000 km</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 Model</li>
@@ -915,11 +916,11 @@
                                         <!--<a href="#"><img src="assets/images/600x380.jpg" class="img-fluid" alt="image"></a>-->
                                         <a href="#"><img src="~/assets/images/2.png" class="img-fluid" alt="image"></a>
                                         <!--<div class="compare_item">
-                                        <div class="checkbox">
-                                            <input type="checkbox" id="compare5">
-                                            <label for="compare5">Compare</label>
-                                        </div>
-                                        </div>-->
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="compare5">
+                                        <label for="compare5">Compare</label>
+                                    </div>
+                                    </div>-->
                                         <ul>
                                             <li><i class="fa fa-road" aria-hidden="true"></i>20,000 km</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 Model</li>
@@ -941,11 +942,11 @@
                                         <!--<a href="#"><img src="assets/images/600x380.jpg" class="img-fluid" alt="image"></a>-->
                                         <a href="#"><img src="~/assets/images/3.png" class="img-fluid" alt="image"></a>
                                         <!--<div class="compare_item">
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="compare6">
-                                                <label for="compare6">Compare</label>
-                                            </div>
-                                        </div>-->
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="compare6">
+                                            <label for="compare6">Compare</label>
+                                        </div>
+                                    </div>-->
                                         <ul>
                                             <li><i class="fa fa-road" aria-hidden="true"></i>20,000 km</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 Model</li>
@@ -966,11 +967,11 @@
                                     <div class="car-info-box">
                                         <a href="#"><img src="~/assets/images/600x380.jpg" class="img-fluid" alt="image"></a>
                                         <!--<div class="compare_item">
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="compare7">
-                                                <label for="compare7">Compare</label>
-                                            </div>
-                                        </div>-->
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="compare7">
+                                            <label for="compare7">Compare</label>
+                                        </div>
+                                    </div>-->
                                         <ul>
                                             <li><i class="fa fa-road" aria-hidden="true"></i>20,000 km</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 Model</li>
@@ -991,11 +992,11 @@
                                     <div class="car-info-box">
                                         <a href="#"><img src="~/assets/images/600x380.jpg" class="img-fluid" alt="image"></a>
                                         <!--<div class="compare_item">
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="compare8">
-                                                <label for="compare8">Compare</label>
-                                            </div>
-                                        </div>-->
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="compare8">
+                                            <label for="compare8">Compare</label>
+                                        </div>
+                                    </div>-->
                                         <ul>
                                             <li><i class="fa fa-road" aria-hidden="true"></i>20,000 km</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 Model</li>
@@ -1016,11 +1017,11 @@
                                     <div class="car-info-box">
                                         <a href="#"><img src="~/assets/images/600x380.jpg" class="img-fluid" alt="image"></a>
                                         <!--<div class="compare_item">
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="compare9">
-                                                <label for="compare9">Compare</label>
-                                            </div>
-                                        </div>-->
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="compare9">
+                                            <label for="compare9">Compare</label>
+                                        </div>
+                                    </div>-->
                                         <ul>
                                             <li><i class="fa fa-road" aria-hidden="true"></i>20,000 km</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 Model</li>
@@ -1045,11 +1046,11 @@
                                         <a href="#"><img src="~/assets/images/600x380.jpg" class="img-fluid" alt="image"></a>
                                         <
                                         <!--div class="compare_item">
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="compare90">
-                                                <label for="compare9">Compare</label>
-                                            </div>
-                                        </div>-->
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="compare90">
+                                            <label for="compare9">Compare</label>
+                                        </div>
+                                    </div>-->
                                         <ul>
                                             <li><i class="fa fa-road" aria-hidden="true"></i>20,000 km</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 Model</li>
@@ -1070,11 +1071,11 @@
                                     <div class="car-info-box">
                                         <a href="#"><img src="~/assets/images/600x380.jpg" class="img-fluid" alt="image"></a>
                                         <!--<div class="compare_item">
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="compare10">
-                                                <label for="compare10">Compare</label>
-                                            </div>
-                                        </div>-->
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="compare10">
+                                            <label for="compare10">Compare</label>
+                                        </div>
+                                    </div>-->
                                         <ul>
                                             <li><i class="fa fa-road" aria-hidden="true"></i>20,000 km</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 Model</li>
@@ -1095,11 +1096,11 @@
                                     <div class="car-info-box">
                                         <a href="#"><img src="~/assets/images/600x380.jpg" class="img-fluid" alt="image"></a>
                                         <!--<div class="compare_item">
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="compare11">
-                                                <label for="compare11">Compare</label>
-                                            </div>
-                                        </div>-->
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="compare11">
+                                            <label for="compare11">Compare</label>
+                                        </div>
+                                    </div>-->
                                         <ul>
                                             <li><i class="fa fa-road" aria-hidden="true"></i>20,000 km</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 Model</li>
@@ -1120,11 +1121,11 @@
                                     <div class="car-info-box">
                                         <a href="#"><img src="~/assets/images/600x380.jpg" class="img-fluid" alt="image"></a>
                                         <!--<div class="compare_item">
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="compare12">
-                                                <label for="compare12">Compare</label>
-                                            </div>
-                                        </div>-->
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="compare12">
+                                            <label for="compare12">Compare</label>
+                                        </div>
+                                    </div>-->
                                         <ul>
                                             <li><i class="fa fa-road" aria-hidden="true"></i>20,000 km</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 Model</li>
@@ -1145,11 +1146,11 @@
                                     <div class="car-info-box">
                                         <a href="#"><img src="~/assets/images/600x380.jpg" class="img-fluid" alt="image"></a>
                                         <!--<div class="compare_item">
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="compare13">
-                                                <label for="compare13">Compare</label>
-                                            </div>
-                                        </div>-->
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="compare13">
+                                            <label for="compare13">Compare</label>
+                                        </div>
+                                    </div>-->
                                         <ul>
                                             <li><i class="fa fa-road" aria-hidden="true"></i>20,000 km</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 Model</li>
@@ -1170,11 +1171,11 @@
                                     <div class="car-info-box">
                                         <a href="#"><img src="~/assets/images/600x380.jpg" class="img-fluid" alt=""></a>
                                         <!--<div class="compare_item">
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="compare14">
-                                                <label for="compare14">Compare</label>
-                                            </div>
-                                        </div>-->
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="compare14">
+                                            <label for="compare14">Compare</label>
+                                        </div>
+                                    </div>-->
                                         <ul>
                                             <li><i class="fa fa-road" aria-hidden="true"></i>20,000 km</li>
                                             <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 Model</li>
@@ -1772,12 +1773,12 @@
         </div>
         <!--/Forgot-password-Form -->
         @*<div class="container body-content">
-                @RenderBody()
-                <hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                </footer>
-            </div>*@
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>*@
         <!-- Scripts -->
         @Scripts.Render("~/assets/js/jquery.min.js")
         @Scripts.Render("~/assets/js/popper.min.js")
@@ -1815,4 +1816,3 @@
         <!-- Scripts -->
     </body>
 </html>
-@*}*@

@@ -47,19 +47,19 @@ namespace autocarrs.Controllers
                 //Checking the response is successful or not which is sent using HttpClient  
                 if (Res.IsSuccessStatusCode)
                 {
-                    //code to fetch token on correct userid and password
-                    //client.DefaultRequestHeaders.Clear();
-                    //UriBuilder builder1 = new UriBuilder("https://localhost:44363/api/Auth/authenticate?");
-                    //builder1.Query = "username=" + UserId + "&pwd=" + UserPassword;
-                    //HttpResponseMessage Res1 = await client.GetAsync(builder1.Uri);
-                    //Checking the response is successful or not which is sent using HttpClient  
-                    //if (Res1.IsSuccessStatusCode)
-                    //{
-                        //Storing the response details recieved from web api
-                        var SiteUser = Res.Content.ReadAsStringAsync().Result;
-                        //var token = Res1.Content.ReadAsStringAsync().Result;
-                       //Deserializing the response recieved from web api and storing into the Employee list  
-                        SiteUsers = JsonConvert.DeserializeObject<SiteUsers>(SiteUser);
+                //code to fetch token on correct userid and password
+                    client.DefaultRequestHeaders.Clear();
+                UriBuilder builder1 = new UriBuilder("https://localhost:44363/api/Auth/authenticate?");
+                builder1.Query = "username=" + UserId + "&pwd=" + UserPassword;
+                HttpResponseMessage Res1 = await client.GetAsync(builder1.Uri);
+                //Checking the response is successful or not which is sent using HttpClient
+                    if (Res1.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api
+                    var SiteUser = Res.Content.ReadAsStringAsync().Result;
+                    var token = Res1.Content.ReadAsStringAsync().Result;
+                    //Deserializing the response recieved from web api and storing into the Employee list  
+                    SiteUsers = JsonConvert.DeserializeObject<SiteUsers>(SiteUser);
                         ViewBag.SiteUsers = SiteUsers;
                         ViewBag.Error = null;
                         //Login successful, add cookie
@@ -67,20 +67,24 @@ namespace autocarrs.Controllers
                         cookie.Value = UserId;
                         ViewBag.UserId = UserId;
                         cookie.Expires = DateTime.Now.AddDays(2);
-                        
-                        Response.Cookies.Add(cookie);
-                        /* cookie code ends here*/
-                        return View("Welcome", SiteUsers);
-                    //}
-                    //else
-                    //{
-                    //    Error err = new Error();
-                    //    err.ErrorMessage = "Wrong UserId or Password";
-                    //    ViewBag.Error = err;
-                    //    ViewBag.SiteUsers = null;
-                    //    return View("Error", err);
-                    //}
+                         Response.Cookies.Add(cookie);
+                        HttpCookie cookie_t = new HttpCookie("token");
+                        cookie_t.Value = token;
+                        cookie_t.Expires = DateTime.Now.AddDays(2);
+                        Response.Cookies.Add(cookie_t);
+
+                    /* cookie code ends here*/
+                    return View("Welcome", SiteUsers);
                 }
+                else
+                {
+                    Error err = new Error();
+                    err.ErrorMessage = "Wrong UserId or Password";
+                    ViewBag.Error = err;
+                    ViewBag.SiteUsers = null;
+                    return View("Error", err);
+                }
+            }
                 else
                 {
                     Error err = new Error();
