@@ -33,12 +33,8 @@ namespace webapi.Controllers
            
             var A = await _context.carmodel.Where(e => e.MakeId == MakeID)
             .ToListAsync();
-            //var B = JsonConvert.SerializeObject(A);
-           // return Ok(B);
-            return (A);
-            //below code converts Json data to string
-            //return (null != A ? JsonConvert.SerializeObject(A) : "{'message':'no data found'}");
-            //return A ; sends Json data object/array
+             return (A);
+
         }
 
         //GET: api/CarModels

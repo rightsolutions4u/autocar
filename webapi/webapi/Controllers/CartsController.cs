@@ -40,7 +40,7 @@ namespace webapi.Controllers
                     "Try again, and if the problem persists " + "see your system administrator.");
             }
             return await _context.Cart     
-                 .Where(a => a.Status == "U" && a.BuyrID == BuyrId)
+                 .Where(a => a.Status == "U" && a.BuyrID == BuyrId )
                  .Include(vehicle => vehicle.AutosVehicle)
                      .ThenInclude(make => make.CarMake)
                  .Include(vehicle => vehicle.AutosVehicle)
@@ -54,7 +54,7 @@ namespace webapi.Controllers
         [HttpGet("GetCartofBuyer")]
         public async Task<ActionResult<IEnumerable<Cart>>> GetCartofBuyer(string BuyrId)
         {
-            return await _context.Cart.Where(a => a.Status == "T" && a.BuyrID == BuyrId)
+            return await _context.Cart.Where(a => /*a.Status == "T" && */a.BuyrID == BuyrId)
                                             .Include(vehicle => vehicle.AutosVehicle)
                                                 .ThenInclude(make => make.CarMake)
                                              .Include(vehicle => vehicle.AutosVehicle)
@@ -118,7 +118,7 @@ namespace webapi.Controllers
         }
 
         // DELETE: api/Carts/
-        [HttpDelete("DeleteCart")]
+        [HttpDelete("DeleteCart")] 
         public async Task<ActionResult<IEnumerable<Cart>>> DeleteCart(int id, string BuyrId)
         {
             var cart = await _context.Cart.FindAsync(id);
@@ -126,7 +126,6 @@ namespace webapi.Controllers
             {
                 return NotFound();
             }
-
             _context.Cart.Remove(cart);
             await _context.SaveChangesAsync();
 

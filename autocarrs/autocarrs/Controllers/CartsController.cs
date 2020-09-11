@@ -70,19 +70,20 @@ namespace autocarrs.Controllers
             }
             return View(cart);
         }
-        // GET: Carts/Delete/5
+        // Delete: Carts/Delete/5
         public async Task<ActionResult> Delete(int? id, string BuyrId)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             Cart cart = new Cart();
             var client = new HttpClient();
                 //Passing service base url  
                 client.DefaultRequestHeaders.Clear();
                 //Define request data format  
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+               // client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //Sending request to find web api REST service resource DeleteCart using HttpClient  
                 UriBuilder builder = new UriBuilder("https://localhost:44363/api/Carts/DeleteCart?");
                 builder.Query = "id=" + id + "&BuyrId=" + BuyrId; 

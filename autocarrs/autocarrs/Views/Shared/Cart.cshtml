@@ -6,6 +6,7 @@
             display: none
         }
     </style>
+   
     @*<div class="section-header text-center">
         <h2><span>Your Cart </span></h2>
         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. </p>
@@ -23,7 +24,7 @@
                         {
                             <div class="form-group">
                                 @*<h4>  @item.AutosVehicle.CarMake.MkDesc  @item.AutosVehicle.CarModel.MdDesc  @item.AutosVehicle.CarBody.BDDesc   <button class="btn"><i class="fa fa-times-circle-o" onclick="location.href='@Url.Action("Delete", "Carts", new { id = @item.CartId, BuyrId=item.BuyrID})'"></i></button>  <button class="btn"><i class="fa fa-plus" onclick="location.href='@Url.Action("AddOrder", "OrderMasters", new { AutoId = item.AutoId, SellPri=item.SellPri })'"></i></button> </h4>*@
-                                <h4>  @item.AutosVehicle.CarMake.MkDesc  @item.AutosVehicle.CarModel.MdDesc  @item.AutosVehicle.CarBody.BDDesc   <button class="btn"><i class="fa fa-times-circle-o" onclick="location.href='@Url.Action("Delete", "Carts", new { id = @item.CartId, BuyrId=item.BuyrID})'"></i></button>  <button class="btn"><i class="fa fa-plus" onclick="PopulateOrder(@item.CartId, @item.BuyrID)"></i></button></h4>
+                                <h4>  @item.AutosVehicle.CarMake.MkDesc  @item.AutosVehicle.CarModel.MdDesc  @item.AutosVehicle.CarBody.BDDesc   <button class="btn"><i class="fa fa-times-circle-o" onclick="location.href='@Url.Action("Delete", "Carts", new { id = @item.CartId, BuyrId=@item.BuyrID})'"></i></button>  <button class="btn"><i class="fa fa-plus" onclick="PopulateOrder(@item.CartId, '@item.BuyrID')"></i></button></h4>
                             </div>
                             <div class="form-group">
                                 <h4>  @item.AutosVehicle.Acolor color</h4>
@@ -40,7 +41,7 @@
                         <h4> <i>Vat Deduction</i> 10%</h4>
                         <h4> <i>Quantity</i></h4> <h4 id="z"></h4>
                         <script>
-                            function PopulateOrder(cartId, buyer)
+                            function PopulateOrder( cartId,  buyer)
                             {
                                 var CartID = cartId;
                                 var Buyer = buyer;
@@ -51,20 +52,16 @@
                                     //type: 'GET',
                                      data: { cartId: CartID, BuyrId: Buyer },
                                      success: function (data) {
-                                        var a = 0;
+                                        var a = 0; 
                                         var y = 0;
                                         var i;
                                         for (i = 0; i < data.length; i++)
                                         {
-                                            alert("sell "+ JSON.stringify(data[i].SellPri));
-                                            a = a + parseInt(JSON.stringify(data[i].SellPri));
+                                            var a= a+ data[i].sellPri;
                                             document.getElementById("x").innerHTML = a;
-                                            alert("a: " + a);
                                             y = y + 1;
                                             document.getElementById("z").innerHTML = y;
-                                            
                                         }
-
                                     },
                                     error:
 
