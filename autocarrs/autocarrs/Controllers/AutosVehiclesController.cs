@@ -221,27 +221,20 @@ namespace autocarrs.Controllers
                 Response.Cookies["UserId"].Value = Buyer;
                 Response.Cookies["UserId"].Expires = DateTime.Now.AddMinutes(5);
                 ViewBag.UserId = Buyer;
+                
             }
-            //if (Request.Cookies.AllKeys.Contains("UserId"))
-            //{
-            //    HttpCookie cookie = Request.Cookies["UserId"];
-            //    ViewBag.UserId = cookie.Value;
-            //    if (cookie.Expires < DateTime.Now)
-            //    {
-            //        ViewBag.UserId = null;
-            //    }
-            //}
+            
             
            Cart cart = new Cart
             {
-                //CartId = 1,
+                
                 BuyrID = ViewBag.UserId,
                 AutoId = AutoId,
                 SellPri = SellPri,
                 Status = "T",
                 Endate = DateTime.Now
             };
-            string output = JsonConvert.SerializeObject(cart);
+             string output = JsonConvert.SerializeObject(cart);
             try
             {
                 var data = new StringContent(output, Encoding.UTF8, "application/json");
@@ -250,6 +243,7 @@ namespace autocarrs.Controllers
                 var response = await client.PostAsync(url, data);
                 var Cart = response.Content.ReadAsStringAsync().Result;
                 var a = JsonConvert.DeserializeObject<Cart>(Cart); // a is the newly posted auto in cart
+
                 var client1 = new HttpClient();
                 UriBuilder builder = new UriBuilder("https://localhost:44363/api/Carts/GetCartofBuyer?");
                 builder.Query = "BuyrId=" + ViewBag.UserId;
@@ -257,7 +251,25 @@ namespace autocarrs.Controllers
                 var CartTemp = response1.Content.ReadAsStringAsync().Result;
                 Cart[] a1 = JsonConvert.DeserializeObject<Cart[]>(CartTemp);
                 ViewBag.Cart = a1;
-                return View("Cart", a1);
+                if (Session["cart"] == null)
+                {
+                    List<Cart> li = new List<Cart>(a1); //this contains the buyers' cart list 
+                   // li.Add(a);
+                    Session["cart"] = li;
+                    ViewBag.cart = li.Count();
+                    Session["count"] = /*1*/Convert.ToInt32(ViewBag.cart);
+                }
+                else
+                {
+                    List<Cart> li = (List<Cart>)Session["cart"];
+                    li.Add(a);//newly entered item
+                    Session["cart"] = li;
+                    ViewBag.cart = li.Count();
+                    Session["count"] = Convert.ToInt32(Session["count"]) + 1;
+
+                }
+                 return View("Cart", /*a1*/ (List<Cart>)Session["cart"]);
+                
             }
             catch
             {

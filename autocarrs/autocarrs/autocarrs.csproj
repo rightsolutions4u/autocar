@@ -432,6 +432,8 @@
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\Shared\CarDetails.cshtml" />
     <Content Include="Views\Shared\Cart.cshtml" />
+    <Content Include="Views\Shared\Order.cshtml" />
+    <Content Include="Views\Shared\OrderMaster.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

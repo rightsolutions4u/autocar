@@ -65,8 +65,8 @@ namespace webapi.Controllers
                                             
         }
         // GET: api/Carts/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Cart>> GetCart(int id)
+        [HttpGet("GetCart")]
+        public async Task<ActionResult<IEnumerable<Cart>>> GetCart(int id)
         {
             var cart = await _context.Cart.FindAsync(id);
 
@@ -74,8 +74,16 @@ namespace webapi.Controllers
             {
                 return NotFound();
             }
-            return cart;
-          }
+            //return cart;
+             return await _context.Cart.Where(a => a.CartId == id)
+                                            .Include(vehicle => vehicle.AutosVehicle)
+                                                .ThenInclude(make => make.CarMake)
+                                             .Include(vehicle => vehicle.AutosVehicle)
+                                                 .ThenInclude(model => model.CarModel)
+                                              .Include(vehicle => vehicle.AutosVehicle)
+                                                 .ThenInclude(carbody => carbody.CarBody)
+                                            .ToListAsync();
+    }
 
         // PUT: api/Carts/5
         [HttpPut("{id}")]
@@ -115,21 +123,21 @@ namespace webapi.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCart", new { id = cart.CartId }, cart);
-        }
+        }   
 
-        // DELETE: api/Carts/
+        // DELETE: api/Carts/5
         [HttpDelete("DeleteCart")] 
-        public async Task<ActionResult<IEnumerable<Cart>>> DeleteCart(int id, string BuyrId)
+        public async Task<IActionResult> DeleteCart(int id)
         {
-            var cart = await _context.Cart.FindAsync(id);
+            var cart =  await _context.Cart.FindAsync(id);
             if (cart == null)
             {
                 return NotFound();
             }
-            _context.Cart.Remove(cart);
+             _context.Cart.Remove(cart);
             await _context.SaveChangesAsync();
-
-            return await GetCartofBuyer(BuyrId); ;
+            return Ok();
+            
         }
 
         private bool CartExists(int id)

@@ -25,31 +25,23 @@ namespace autocarrs.Controllers
             return View(await db.OrderMasters.ToListAsync());
         }
         // GET: OrderMasters
-        public async Task<ActionResult> AddOrder(int AutoId, int SellPri)
+        public async Task<ActionResult> AddOrder(Cart cart)
         {
-            var Val = "";
-            if (Request.Cookies.AllKeys.Contains("UserId"))
+           if (Request.Cookies["UserId"] == null) //not login / registered or login expired or 
             {
-                HttpCookie cookie = Request.Cookies["UserId"];
-                 Val = cookie.Value;
-                //if (cookie.Expires < DateTime.Now)
-                //{
-                //    Val = null;
-                //}
-
-            }
-            if (Val == null) //not login / registered or login expired or 
-            {
-                return HttpNotFound();
-
+                ViewBag.UserId = "Not registered";
+                return View("OrderMaster");
+               
             }
             else
             {
+                
+                string User = Request.Cookies["UserId"].Value.ToString();
                 OrderMaster ordermaster = new OrderMaster
                 {
                     TRDATE = DateTime.Now,
-                    BUYRID = Val,
-                    AMOUNT = SellPri,
+                    BUYRID = User,
+                    AMOUNT = cart.SellPri, 
                     PartialPayment = 0
                 };
                 string output = JsonConvert.SerializeObject(ordermaster);
@@ -61,7 +53,7 @@ namespace autocarrs.Controllers
                     var OrderMaster = response.Content.ReadAsStringAsync().Result;
                     var a = JsonConvert.DeserializeObject<SiteUsers>(OrderMaster);
                     ViewBag.OrderMaster = a;
-                    return View("Cart", a);
+                    return View("OrderMaster", a);
 
                 }
                 catch

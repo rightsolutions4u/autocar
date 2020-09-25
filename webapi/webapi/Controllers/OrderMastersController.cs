@@ -78,11 +78,7 @@ namespace webapi.Controllers
         [HttpPost]
         public async Task<ActionResult<OrderMaster>> PostOrderMaster(OrderMaster orderMaster)
         {
-            //var AutosBuyersController = new AutosBuyersController();
-            //Boolean Buyer = AutosBuyersController.AutosBuyerExists(orderMaster.BUYRID);
-            //if (Buyer)
-            //{
-                _context.ordermaster.Add(orderMaster);
+               _context.ordermaster.Add(orderMaster);
                 try
                 {
                     await _context.SaveChangesAsync();

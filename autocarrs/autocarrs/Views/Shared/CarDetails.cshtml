@@ -151,7 +151,14 @@
                 </div>
 
             </div>
-            <input type="submit" name="Choose" value="Choose" class="login_btn" onclick="location.href='@Url.Action("PostToCart", "AutosVehicles" , new {AutoId=@Model.AutoId, SellPri=@Model.SellPri})'">
+            @*<input type="submit" name="Add to Cart" value="Add to Cart" class="login_btn" onclick="location.href='@Url.Action("PostToCart", "AutosVehicles" , new { AutoId=@Model.AutoId, SellPri=@Model.SellPri })'">*@
+            <a id="btn_add" href="@Url.Action("PostToCart", "AutosVehicles" ,new { AutoId=@Model.AutoId, SellPri=@Model.SellPri })" class="btn btn-info btn-sm" style="margin-left:60px">
+                <span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart
+            </a>
+
+            <a id="btn_add" href="@Url.Action("Index", "Home" )" class="btn btn-info btn-sm" style="margin-left:60px">
+                <span class="glyphicon glyphicon-eye-open"></span> Continue shopping
+            </a>
         </div>
             
         }

@@ -70,72 +70,93 @@ namespace autocarrs.Controllers
             }
             return View(cart);
         }
-        // Delete: Carts/Delete/5
-        public async Task<ActionResult> Delete(int? id, string BuyrId)
+        // DELETE: api/Carts
+        [HttpDelete]
+        public async Task <ActionResult> Delete(Cart cart)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            
-            Cart cart = new Cart();
+            List<Cart> li = (List<Cart>)Session["cart"];
+            //li.RemoveAll(x => x.CartId == cart.CartId);
+            //Session["cart"] = li;
+          
             var client = new HttpClient();
-                //Passing service base url  
-                client.DefaultRequestHeaders.Clear();
-                //Define request data format  
-               // client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //Sending request to find web api REST service resource DeleteCart using HttpClient  
-                UriBuilder builder = new UriBuilder("https://localhost:44363/api/Carts/DeleteCart?");
-                builder.Query = "id=" + id + "&BuyrId=" + BuyrId; 
-                HttpResponseMessage Res = await client.GetAsync(builder.Uri);
-                if (Res.IsSuccessStatusCode)
-                {
-                var cart1 = Res.Content.ReadAsStringAsync().Result;
-                //Deserializing the response recieved from web api and storing into the Employee list
-                Cart[] c = JsonConvert.DeserializeObject<Cart[]>(cart1);
-                ViewBag.Cart = c;
-                return View("Cart", c);
-                }
-                else
-                {
-                    Error err = new Error();
-                    err.ErrorMessage = "Sorry no cart found on this id " + id;
-                    ViewBag.Error = err;
-                    ViewBag.Cart = null;
-                    return View("Error", err);
-                }
-        }
-        // GET: Carts/MyCart
-        public async Task<ActionResult> MyCart(string BuyrId)
-        {
-            BuyrId = "Shazia";
-            Cart cart = new Cart();
-            var client = new HttpClient();
+            //Passing service base url  
             client.DefaultRequestHeaders.Clear();
             //Define request data format  
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //Sending request to find web api REST service resource DeleteCart using HttpClient  
-            UriBuilder builder = new UriBuilder("https://localhost:44363/api/Carts/GetCartofBuyer?");
-            builder.Query = "BuyrId=" +  BuyrId;
+            UriBuilder builder = new UriBuilder("https://localhost:44363/api/Carts/DeleteCart?");
+            builder.Query = "id=" + cart.CartId ;
             HttpResponseMessage Res = await client.GetAsync(builder.Uri);
             if (Res.IsSuccessStatusCode)
             {
-                var cart1 = Res.Content.ReadAsStringAsync().Result;
-                //Deserializing the response recieved from web api and storing into the Employee list
-                Cart[] c = JsonConvert.DeserializeObject<Cart[]>(cart1);
-                ViewBag.Cart = c;
-                return View("Cart", c);
+                Session["count"] = Convert.ToInt32(Session["count"]) - 1;
+                //var cart1 = Res.Content.ReadAsStringAsync().Result;
+                ////Deserializing the response recieved from web api and storing into the Employee list
+                //Cart[] c = JsonConvert.DeserializeObject<Cart[]>(cart1);
+                //ViewBag.Cart = c;
+                //return View("Cart", c);
+                return RedirectToAction("MyCart", "Carts", new {cart.BuyrID });
             }
             else
             {
                 Error err = new Error();
-                err.ErrorMessage = "Sorry there are no items in your cart  " + BuyrId;
+                err.ErrorMessage = "Sorry no cart found on this id " + cart.CartId;
                 ViewBag.Error = err;
                 ViewBag.Cart = null;
                 return View("Error", err);
             }
         }
-
+        // GET: Carts/MyCart
+        public async Task<ActionResult> MyCart(string BuyrId)
+        {
+            //BuyrId = "Shazia";
+            if (BuyrId != null)
+            {
+                Cart cart = new Cart();
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //Sending request to find web api REST service resource DeleteCart using HttpClient  
+                UriBuilder builder = new UriBuilder("https://localhost:44363/api/Carts/GetCartofBuyer?");
+                builder.Query = "BuyrId=" + BuyrId;
+                HttpResponseMessage Res = await client.GetAsync(builder.Uri);
+                if (Res.IsSuccessStatusCode)
+                {
+                    var cart1 = Res.Content.ReadAsStringAsync().Result;
+                    //Deserializing the response recieved from web api and storing into the cart list
+                    Cart[] c = JsonConvert.DeserializeObject<Cart[]>(cart1);
+                    ViewBag.Cart = c;
+                    //return View("Cart", c);
+                    if (Session["cart"] != null)
+                    {
+                        return View("Cart", (List<Cart>)Session["cart"]);
+                    }
+                    else
+                    {
+                        List<Cart> li = new List<Cart>(c);
+                        Session["cart"] = li;
+                        return View("Cart", /*c*/ (List<Cart>)Session["cart"]);
+                    }
+                }
+                else
+                {
+                    Error err = new Error();
+                    err.ErrorMessage = "Sorry there are no items in your cart  " + BuyrId;
+                    ViewBag.Error = err;
+                    ViewBag.Cart = null;
+                    return View("Error", err);
+                }
+            }
+            else
+            {
+                Error err = new Error();
+                err.ErrorMessage = "Sorry there are no items in your cart  " ;
+                ViewBag.Error = err;
+                ViewBag.Cart = null;
+                return View("Error", err);
+            }
+        }
         // POST: Carts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

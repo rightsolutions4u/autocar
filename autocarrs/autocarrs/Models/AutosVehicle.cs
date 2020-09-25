@@ -66,9 +66,5 @@ namespace autocarrs.Models
         public ICollection<AutosImages> AutosImages { get; set; }
         public ICollection<AutosFeatuers> AutosFeatures { get; set; }
 
-        public static implicit operator AutosVehicle(ActionResult v)
-        {
-            throw new NotImplementedException();
-        }
-    }
+           }
 }
